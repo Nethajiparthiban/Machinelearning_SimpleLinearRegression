@@ -41,3 +41,21 @@ plt.scatter(y_test,y_pred)
 plt.xlabel('Actual')
 plt.ylabel('Predicted')
 #print(plt.show())
+#Checking the accuracy.
+from sklearn.metrics import mean_squared_error,r2_score
+rscore=r2_score(y_test,y_pred)
+r=rscore*100
+#print(r.round(),'%')
+#Ploting the graph in seaborn.
+r=2
+c=2
+it=1
+for x in ['R&D Spend','Administration','Marketing Spend']:
+    plt.subplot(r,c,it)
+    sns.barplot(x='State',y=x,data=data)
+    it+=1
+plt.tight_layout()
+#plt.show()
+#sns.barplot(x='State',y='Profit',data=data,palette='Blues_d')
+#Ploting in pie chart.
+data.groupby('State')['Administration'].median().plot(kind='pie',autopct='%0.2f%%')
