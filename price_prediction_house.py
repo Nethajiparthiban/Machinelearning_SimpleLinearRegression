@@ -38,4 +38,12 @@ plt.title('Housing price prediction')
 plt.scatter(x=df['area'],y=df['price'],color='orange',marker='+')
 plt.plot(x,y,color='blue')
 plt.show()
+import pickle
+#pickling
+with open('model_pickle','wb') as f:
+    pickle.dump(reg,f)
+#unpickling
+with open('model_pickle','rb') as f:
+    model=pickle.load(f)
 
+print(model.predict([[3000]]))
