@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import linear_model
 
-df=pd.read_csv(r"C:\Users\Netha\Ananconda onlinclass\Mission learning\ML from codebasics\Machine Learning\canada_per_capita_income.csv")
+df=pd.read_csv(r"C:\Users\Netha\Ananconda_onlineclass\Mission learning\ML from codebasics\Machine Learning\Linear_regression\canada_per_capita_income.csv")
 df['percapita income']=df['per capita income (US$)']
 df.drop('per capita income (US$)',inplace=True,axis=1)
 #print(df)
@@ -36,3 +36,11 @@ plt.title('After prediction')
 plt.scatter(x=new_df1['year'],y=new_df1['percapita income'],color='blue',marker='+')
 plt.plot(new_df1['year'],reg.predict(new_df1[['year']]))
 plt.show()
+import pickle
+
+with open('pick_pickle','wb') as k:
+    pickle.dump(reg,k)
+with open('pick_pickle','rb') as k:
+    pred=pickle.load(k)
+
+print(pred.predict([[2025]]))
